@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 
 
-const signupURL='http://127.0.0.1:8000/api/signup';
-const signinURL='http://127.0.0.1:8000/api/signin';
-const productsURL='http://127.0.0.1:8000/api/products';
+const signupURL='Hari3tech.pythonanywhere.com/api/signup';
+const signinURL='Hari3tech.pythonanywhere.com/api/signin';
+const productsURL='Hari3tech.pythonanywhere.com/api/products';
 @Injectable({
   providedIn: 'root'
 })
