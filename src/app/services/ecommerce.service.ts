@@ -54,7 +54,7 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`http://127.0.0.1:8000/api/products/${id}`,options)
+    return fetch(`Hari3tech.pythonanywhere.com/api/products/${id}`,options)
   }
   addToCartService(id:any){
     let header=new Headers
