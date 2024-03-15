@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 
 
-const signupURL='https://fullstackecommercewebsite.pythonanywhere.com/api/signup';
-const signinURL='https://fullstackecommercewebsite.pythonanywhere.com/api/signin';
-const productsURL='https://fullstackecommercewebsite.pythonanywhere.com/api/products';
+const signupURL='http://127.0.0.1:8000/api/signup';
+const signinURL='http://127.0.0.1:8000/api/signin';
+const productsURL='http://127.0.0.1:8000/api/products';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +54,7 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`fullstackecommercewebsite.pythonanywhere.com/api/products/${id}`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/${id}`,options)
   }
   addToCartService(id:any){
     let header=new Headers
@@ -67,7 +67,20 @@ export class EcommerceService {
       method:"POST",
       headers:header
     }
-    return fetch(`fullstackecommercewebsite.pythonanywhere.com/api/products/${id}/add_to_cart`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/${id}/add_to_cart`,options)
+  }
+  addTowishlistService(id:any){
+    let header=new Headers
+    header.append('Content-Type','application/json')
+    let token =this.fetchToken()
+    if(token){
+      header.append('Authorization',token)
+    }
+    let options={
+      method:"POST",
+      headers:header
+    }
+    return fetch(`http://127.0.0.1:8000/api/products/${id}/add_to_wishlist`,options)
   }
   cartListservice(){
     let header=new Headers
@@ -80,8 +93,22 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`fullstackecommercewebsite.pythonanywhere.com/api/cart`,options)
+    return fetch(`http://127.0.0.1:8000/api/cart`,options)
   }
+  wishlistListservice(){
+    let header=new Headers
+    header.append('Content-Type','application/json')
+    let token =this.fetchToken()
+    if(token){
+      header.append('Authorization',token)
+    }
+    let options={
+      method:"GET",
+      headers:header
+    }
+    return fetch(`http://127.0.0.1:8000/api/wishlist`,options)
+  }
+
   placeOrderService(id:any,data:any){
     let header=new Headers
     header.append('Content-Type','application/json')
@@ -94,7 +121,7 @@ export class EcommerceService {
       headers:header,
       body:JSON.stringify(data)
     }
-    return fetch(`fullstackecommercewebsite.pythonanywhere.com/api/products/${id}/place_order`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/${id}/place_order`,options)
   }
   OrderListService(){
     let header=new Headers
@@ -107,7 +134,7 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/orders`,options)
+    return fetch(`http://127.0.0.1:8000/api/orders`,options)
   }
   orderCancelservice(id:any){
     let header=new Headers
@@ -120,7 +147,7 @@ export class EcommerceService {
       method:"PUT",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/orders/${id}/cancel`,options)
+    return fetch(`http://127.0.0.1:8000/api/orders/${id}/cancel`,options)
   }
   removeFromCartService(id:any){
     let header=new Headers
@@ -133,7 +160,20 @@ export class EcommerceService {
       method:"DELETE",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/cart/${id}`,options)
+    return fetch(`http://127.0.0.1:8000/api/cart/${id}`,options)
+  }
+  removeFromwishlistService(id:any){
+    let header=new Headers
+    header.append('Content-Type','application/json')
+    let token =this.fetchToken()
+    if(token){
+      header.append('Authorization',token)
+    }
+    let options={
+      method:"DELETE",
+      headers:header
+    }
+    return fetch(`http://127.0.0.1:8000/api/wishlist/${id}`,options)
   }
   categoryService(){
     let header=new Headers
@@ -142,7 +182,7 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/category`,options)
+    return fetch(`http://127.0.0.1:8000/api/category`,options)
   }
   categoryDetailService(id:any){
     let header=new Headers
@@ -151,7 +191,7 @@ export class EcommerceService {
       method:"GET",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/category/${id}`,options)
+    return fetch(`http://127.0.0.1:8000/api/category/${id}`,options)
   }
   addReviewService(id:any,data:any){
     let header=new Headers
@@ -165,7 +205,7 @@ export class EcommerceService {
       headers:header,
       body:JSON.stringify(data)
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/products/${id}/add_review`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/${id}/add_review`,options)
   }
   addProductService(data:any,file:any){
    
@@ -187,7 +227,7 @@ export class EcommerceService {
       headers:header,
       body:formdata
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/products/add`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/add`,options)
   }
   productRemoveService(id:any){
     let header=new Headers
@@ -200,7 +240,7 @@ export class EcommerceService {
       method:"DELETE",
       headers:header
     }
-    return fetch(`http:fullstackecommercewebsite.pythonanywhere.com/api/products/${id}/remove`,options)
+    return fetch(`http://127.0.0.1:8000/api/products/${id}/remove`,options)
   }
   productEditService(id:any,data:any,file:any){
     let header=new Headers
